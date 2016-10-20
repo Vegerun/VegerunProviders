@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 
-import { Page1 } from './../page1/page1';
+import { MenuPage } from './../menu/menu';
 
 import { SessionService } from '../../services/session.service';
 
@@ -24,11 +24,16 @@ export class LoginPage {
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
+
+        this.loginForm.setValue({
+            email: 'manager@whatthepitta.com',
+            password: 'whatthepitta!'
+        });
     }
 
     onLogin() {
         this.session.login(this.loginForm.value)
-            .then(() => this.nav.setRoot(Page1))
+            .then(() => this.nav.setRoot(MenuPage))
             .catch(error => this.error = error);
     }
 }

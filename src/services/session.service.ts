@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, Response } from '@angular/http';
-import { Observable, Subscription } from "rxjs";
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -10,14 +9,15 @@ import { LoginRequest } from './models/login-request.model';
 @Injectable()
 export class SessionService {
 
-    private userData: LoginResult = null;
+    public userData: LoginResult = null;
+
     private error: any = null;
 
     constructor(private http: Http) { }
 
     login(request: LoginRequest) : Promise<LoginResult> {
         let userDataPromise = this.http.post(ApiTokenUri, request)
-            .map(r => r.json().data as LoginResult)
+            .map(r => r.json() as LoginResult)
             .toPromise();
 
         userDataPromise.then(
