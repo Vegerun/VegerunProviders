@@ -9,6 +9,7 @@ import { MenuPage } from '../pages/menu/menu';
 
 import { SessionService } from '../services/session.service';
 import { MenuService } from '../services/menu.service';
+import { OrderService } from '../services/order.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MenuService } from '../services/menu.service';
   ],
   providers: [
     SessionService,
-    MenuService
+    MenuService,
+    OrderService
   ]
 })
 export class AppModule {}

@@ -17,7 +17,7 @@ export class MenuPage implements OnInit {
         private $menu: MenuService) { }
 
     ngOnInit() {
-        this.$menu.findAll().subscribe(
+        this.$menu.findAllItems().subscribe(
             data => this.menuItems = data
         );
     }
