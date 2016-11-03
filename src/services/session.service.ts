@@ -35,5 +35,6 @@ export class SessionService {
 
 export interface LoginResult {
     access_token: string,
-    restaurant_id: string
+    restaurant_id: string,
+    firebase_access_token: string
 }

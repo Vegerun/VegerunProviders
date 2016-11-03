@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Active Orders Management</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  Active Orders Page
+
+  <ion-list>
+    <ion-item *ngFor="let order of $order.pendingOrders | async">
+        <pre>{{ order | json }}</pre>
+    </ion-item>
+  </ion-list>
+</ion-content>
