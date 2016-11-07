@@ -1,9 +1,10 @@
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { ApiTokenUri } from './config/server.config';
+import { ApiRoot } from './../config/server.config';
 import { LoginRequest } from './models/login-request.model';
 
 @Injectable()
@@ -13,19 +14,25 @@ export class SessionService {
 
     private error: any = null;
 
+
+    private _userDataSub: BehaviorSubject<LoginResult> = new BehaviorSubject(null);
+    public userData$: Observable<LoginResult> = this._userDataSub.asObservable();
+
     constructor(private http: Http) { }
 
     login(request: LoginRequest) : Promise<LoginResult> {
-        let userDataPromise = this.http.post(ApiTokenUri, request)
+        let userDataObs = this.http.post(`${ApiRoot}/token`, request)
             .map(r => r.json() as LoginResult)
-            .toPromise();
+            .share();
 
-        userDataPromise.then(
-            data => this.userData = data,
-            error => this.error = error
-        );
+        userDataObs.subscribe(
+            res => {
+                this.userData = res;
+                this._userDataSub.next(res);
+            },
+            error => this.error = error);
 
-        return userDataPromise;
+        return userDataObs.toPromise();
     }
 
     isLoggedIn() {

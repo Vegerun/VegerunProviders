@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
+import { RestaurantService } from '../services/restaurant.service';
+
 import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
 import { ActiveOrdersPage } from '../pages/active-orders/active-orders';
@@ -17,7 +19,10 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(
+      public platform: Platform,
+      private restaurantService: RestaurantService)
+  {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -25,7 +30,6 @@ export class MyApp {
       { title: 'Stock Management', component: MenuPage },
       { title: 'Orders', component: ActiveOrdersPage }
     ];
-
   }
 
   initializeApp() {

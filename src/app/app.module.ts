@@ -8,10 +8,14 @@ import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
 import { ActiveOrdersPage } from '../pages/active-orders/active-orders';
 
+import { VegerunHttp } from '../extensions/vegerun-http.service';
+
 import { SessionService } from '../services/session.service';
 import { MenuService } from '../services/menu.service';
 import { OrderService } from '../services/order.service';
 import { FirebaseWorkerFactory } from '../services/firebase-worker.factory';
+import { RestaurantService } from '../services/restaurant.service';
+import { LocationService } from '../services/location.service';
 
 @NgModule({
   declarations: [
@@ -37,10 +41,13 @@ import { FirebaseWorkerFactory } from '../services/firebase-worker.factory';
     ActiveOrdersPage
   ],
   providers: [
+    VegerunHttp,
     SessionService,
     MenuService,
     OrderService,
-    FirebaseWorkerFactory
+    FirebaseWorkerFactory,
+    RestaurantService,
+    LocationService
   ]
 })
 export class AppModule {}

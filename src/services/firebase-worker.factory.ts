@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import Firebase from 'firebase';
 
 import { FirebaseHost } from './config/firebase.config';
